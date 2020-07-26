@@ -1,7 +1,9 @@
 import Chart from "react-google-charts";
+import { Skeleton, Divider } from 'antd';
 import Container from './Container';
 
-const StockGraph = ({ data }) => {
+
+const StockGraph = ({ data, assetTicker }) => {
     const dataKeys = Object.keys(data);
     const finalData = dataKeys.map((key) => ([key, parseFloat(data[key]['4. close'])])).reverse();
     return (
@@ -10,7 +12,7 @@ const StockGraph = ({ data }) => {
                 width={'100%'}
                 height={'600px'}
                 chartType="Line"
-                loader={<div>Loading Chart</div>}
+                loader={<Skeleton paragraph={{ rows: 15 }} active />}
                 data={[
                     [
                         'Day',
@@ -20,12 +22,14 @@ const StockGraph = ({ data }) => {
                 ]}
                 options={{
                     chart: {
-                        title: 'Box Office Earnings in First Two Weeks of Opening',
+                        title: `${assetTicker}`,
                         subtitle: 'in $ (USD)',
                     },
                 }}
                 rootProps={{ 'data-testid': '3' }}
             />
+            <Divider />
+
         </Container>
     )
 }

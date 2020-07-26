@@ -7,4 +7,7 @@ export default styled.a`
     &:hover {
         color: #1890ff;
     }
+    @media (max-width: 768px) {
+        font-size: 25px;
+	}
 `;

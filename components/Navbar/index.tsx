@@ -3,7 +3,7 @@ import List from './NavList';
 import Item from './NavItem';
 import Nav from './Nav';
 import Link from './NavLink';
-import { SettingOutlined, DollarOutlined, StockOutlined } from '@ant-design/icons';
+import { PieChartOutlined } from '@ant-design/icons';
 
 export default () => {
     return (
@@ -12,17 +12,11 @@ export default () => {
                 <Item>
                     <Link href="/">
                         Kapital
-                        {/* <StockOutlined /> */}
                     </Link>
                 </Item>
-                <Item>
+                <Item endWhenMobile = "true">
                     <Link href="/portfolio">
-                        <DollarOutlined />
-                    </Link>
-                </Item>
-                <Item end="true">
-                    <Link href="/settings">
-                        <SettingOutlined />
+                        <PieChartOutlined />
                     </Link>
                 </Item>
             </List>
