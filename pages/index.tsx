@@ -1,14 +1,29 @@
 import React from 'react';
-import Header from '../components/Header';
-import Title from '../components/Styled/Layout/MainTitle';
+import StockGraph from '../components/StockGraph';
+import { alpha, axios } from '../api';
+import Head from 'next/head';
 
-export default () => {
+export default ({ assets, timeSeries }) => {
     return (
-        <div>
-            <Header />
-            <div>
-                <Title fontSize = {"40px"}>Kapital</Title>
+        <>
+            <Head>
+                <title>Kapital</title>
+            </Head>
+            <div style={{ height: "600px" }}>
+                <StockGraph data={timeSeries} />
             </div>
-        </div>
+        </>
     )
+};
+
+
+export const getStaticProps = async (ctx) => {
+    const assets = await axios.get('/portfolio')
+        .then(res => res.data);
+    const data = await alpha.data.daily('msft');
+
+    const timeSeries = data["Time Series (Daily)"];
+    console.log(timeSeries);
+
+    return { props: { assets, timeSeries } }
 }
