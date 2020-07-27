@@ -1,10 +1,10 @@
-import _axios from 'axios';
-import alphavantage from 'alphavantage';
-import { API_KEY } from '../config';
+import _axios from "axios";
+import alphavantage from "alphavantage";
+import { serverURL } from "../next.config";
+import { API_KEY } from "../config";
 
 export const axios = _axios.create({
-    baseURL: "http://localhost:5000"
+    baseURL: serverURL,
 });
 
-
-export const alpha =  alphavantage({key: API_KEY});
+export const alpha = alphavantage({ key: API_KEY });
