@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import styled from 'styled-components';
 import { ResponsivePie } from '@nivo/pie'
-import { Spin } from 'antd';
 
 interface Props {
 	portfolio: {

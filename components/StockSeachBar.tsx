@@ -1,5 +1,5 @@
+import React, { FC } from 'react';
 import { Select } from 'antd';
-import { FC } from 'react';
 
 const { Option } = Select;
 
