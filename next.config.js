@@ -8,6 +8,9 @@ module.exports = withCSS({
     exportTrailingSlash: true,
     serverURL: serverURL,
     webpack: config => {
+        config.node = {
+            fs: "empty"
+        };
         config.plugins.push(
             new webpack.DefinePlugin({
                 'process.env.serverURL': JSON.stringify(serverURL),
