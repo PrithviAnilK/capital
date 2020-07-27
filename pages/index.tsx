@@ -30,7 +30,7 @@ export default ({ assets, timeSeries }) => {
 };
 
 
-export const getStaticProps = async (ctx) => {
+export const getServerSideProps = async (context) => {
     const assets = await axios.get('/portfolio')
         .then(res => res.data);
 

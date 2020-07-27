@@ -38,7 +38,7 @@ export default ({ initAssets }) => {
     )
 }
 
-export async function getStaticProps() {
+export const getServerSideProps = async (context) => {
     const initAssets = await axios.get('/portfolio')
         .then(res => res.data)
     return { props: { initAssets } }
