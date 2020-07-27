@@ -3,7 +3,7 @@ import PieChart from '../../components/PieChart';
 import Container from '../../components/Layout/Container';
 import PortfolioContainer from '../../components/Layout/PortfolioContainer';
 import PortfolioCardList from '../../components/PortfolioCardList';
-import { axios } from '../../api';
+import { axios } from '../../apis';
 import Head from 'next/head';
 
 export default ({ initAssets }) => {
@@ -17,7 +17,7 @@ export default ({ initAssets }) => {
 
     const deleteAsset = (ticker) => {
         axios.delete(`portfolio/${ticker}`);
-        setAssets(assets.filter((asset: {ticker}) => asset.ticker != ticker));
+        setAssets(assets.filter((asset: { ticker }) => asset.ticker != ticker));
     }
 
     return (

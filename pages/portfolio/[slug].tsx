@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { Button, Card, Divider, Modal, Descriptions } from 'antd';
+import { Button, Card, Divider, Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import MainTitle from '../../components/Layout/MainTitle';
-import { alpha, axios } from '../../api';
+import { alpha, axios } from '../../apis';
 
 const { confirm } = Modal;
 
@@ -28,11 +28,11 @@ export default ({ asset, currentPrices }) => {
             },
         });
     }
-    
+
     const deleteAsset = (ticker) => {
         axios.delete(`portfolio/${ticker}`);
     }
-    
+
     const { ticker, name, notes, percent } = asset;
     const GQ = currentPrices['Global Quote'];
     const typesOfQuotes = ['02. open', '03. high', '04. low', '05. price', '06. volume', '07. latest trading day', '08. previous close', '09. change', '10. change percent'];

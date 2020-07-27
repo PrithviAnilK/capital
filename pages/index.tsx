@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import StockGraph from '../components/StockGraph';
-import { alpha, axios } from '../api';
+import { alpha, axios } from '../apis';
 import Head from 'next/head';
 import StockSeachBar from '../components/StockSeachBar';
-import { Divider } from 'antd';
 
 export default ({ assets, timeSeries }) => {
     const [currentAssetTicker, setAssetTicker] = useState(assets[0].ticker);
@@ -21,7 +20,7 @@ export default ({ assets, timeSeries }) => {
             <Head>
                 <title>Kapital</title>
             </Head>
-            <div style={{ margin: "20px"}}>
+            <div style={{ margin: "20px" }}>
                 <StockSeachBar portfolio={assets} onChange={onChange} />
                 <StockGraph data={timeSeriesData} assetTicker={currentAssetTicker} />
             </div>
