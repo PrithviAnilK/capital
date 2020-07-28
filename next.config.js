@@ -5,6 +5,7 @@ const isProduction = (process.env.NODE_ENV || 'production') === 'production';
 const serverURL = "http://localhost:5000/";
 
 module.exports = withCSS({
+    target: 'serverless',
     exportTrailingSlash: true,
     serverURL: serverURL,
     webpack: config => {
