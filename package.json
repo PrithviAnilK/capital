@@ -3,12 +3,19 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
+    "builds": [
+        {
+            "src": "package.json",
+            "use": "@now/next"
+        }
+    ],
     "scripts": {
         "dev": "next",
         "build": "next build",
         "start": "next start",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "server": "nodemon server/index.js"
+        "server": "nodemon server/index.js",
+        "now-build": "next build"
     },
     "author": "",
     "license": "ISC",
@@ -24,7 +31,7 @@
         "express": "^4.17.1",
         "lodash": "^4.17.19",
         "mongoose": "^5.9.23",
-        "next": "^9.4.4",
+        "next": "^9.5.0",
         "next-redux-wrapper": "^6.0.2",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
