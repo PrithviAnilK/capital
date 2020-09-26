@@ -1,11 +1,16 @@
 import React from 'react';
+import { Button, Card, Divider, Modal, Statistic, Typography } from 'antd';
+import { ArrowDownOutlined, ArrowUpOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/router';
-import { Button, Card, Divider, Modal } from 'antd';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
-import MainTitle from '../../components/Layout/MainTitle';
 import { alpha, axios } from '../../apis';
+const { Title } = Typography;
 
 const { confirm } = Modal;
+
+// https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
+const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 
 export default ({ asset, currentPrices }) => {
@@ -35,44 +40,40 @@ export default ({ asset, currentPrices }) => {
 
     const { ticker, name, notes, percent } = asset;
     const GQ = currentPrices['Global Quote'];
-    const typesOfQuotes = ['02. open', '03. high', '04. low', '05. price', '06. volume', '07. latest trading day', '08. previous close', '09. change', '10. change percent'];
-    const data = typesOfQuotes.map((typeOfQuote) => GQ[typeOfQuote]);
 
+    const price = GQ['05. price'];
+    const volume = GQ['06. volume'];
+    // const typesOfQuotes = [
+    //     '02. open', 
+    //     '03. high', 
+    //     '04. low', 
+    //     '05. price', 
+    //     '06. volume', 
+    //     '07. latest trading day', 
+    //     '08. previous close'
+    // ];
+    const changep = parseFloat(GQ['10. change percent']);
     return (
-        <Card title={<h1>{ticker}</h1>} bordered={false} style={{ width: "90%", margin: "20px auto" }}>
-            <MainTitle>{name}</MainTitle>
-            <h1>
-                <label>Price: {" "}</label>
-                ${data[3]}
-            </h1>
-            <h1>
-                <label>Percent Of Portfolio: {" "}</label>
-                {percent}%
-            </h1>
-            <h1>
-                <label>Open: {" "}</label>
-                ${data[0]}
-            </h1>
-            <h1>
-                <label>High: {" "}</label>
-                ${data[1]}
-            </h1>
-            <h1>
-                <label>Low: {" "}</label>
-                ${data[2]}
-            </h1>
-            <h1>
-                <label>Volume: {" "}</label>
-                {data[4]}
-            </h1>
-            <h1>
-                <label>Change: {" "}</label>
-                {data[7]}
-            </h1>
-            <h1>
-                <label>% Change: {" "}</label>
-                {data[8]}
-            </h1>
+        <Card bordered={true} style={{ margin: "20px" }}>
+            <Title>
+                {name}
+                {" "}
+                <span style={{ color: "gray" }}>{ticker}</span>
+                {" "}
+            </Title>
+            <span style={{ color: "gray", fontSize: "25px"}}>{percent}%</span>
+            <Card>
+                <Statistic title="Price" value={price} />
+                <Statistic title="Volume" value={volume} />
+                <Statistic
+                    title="Change"
+                    value={changep}
+                    precision={2}
+                    valueStyle={{ color: changep > 0 ? "green" : "red" }}
+                    prefix={changep > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
+                    suffix="%"
+                />
+            </Card>
             <Divider />
             <div>
                 <h1>Notes: {" "}</h1>
