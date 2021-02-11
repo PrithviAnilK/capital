@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const PortfolioRouter = require("./portfolio.router");
 
-mongoose.connect("mongodb://localhost:27017/kapital", {
+mongoose.connect("mongodb://localhost:27017/capital", {
     useUnifiedTopology: true,
     useNewUrlParser: true,
 });
